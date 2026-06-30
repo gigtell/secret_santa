@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { isValidEmail } from '@/lib/email';
 import type { Assignment, Participant } from '@/lib/shuffle';
 
 interface FormErrors {
@@ -13,7 +14,6 @@ interface FormErrors {
 
 const minimumParticipants = 3;
 const emptyParticipant = (): Participant => ({ name: '', email: '' });
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const createInitialParticipants = () =>
   Array.from({ length: minimumParticipants }, emptyParticipant);
@@ -76,7 +76,7 @@ export function ParticipantForm() {
 
       if (!trimmedEmail) {
         entryErrors.email = 'Please add an email.';
-      } else if (!emailPattern.test(trimmedEmail)) {
+      } else if (!isValidEmail(trimmedEmail)) {
         entryErrors.email = 'Please enter a valid email address.';
       }
 
