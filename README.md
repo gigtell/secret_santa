@@ -72,6 +72,7 @@ secret_santa/
 ├── components/
 │   └── ParticipantForm.tsx
 ├── lib/
+│   ├── email.ts
 │   └── shuffle.ts
 ├── .env.local.example
 ├── package.json
